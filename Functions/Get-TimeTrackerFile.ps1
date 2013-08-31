@@ -1,3 +1,7 @@
+<#
+.SYNOPSIS
+	Gets the filename of the current TimeTracker file or the pattern used to find the TimeTracker files.
+#>
 function Get-TimeTrackerFile {
 	Param(
 		[Switch]$pattern

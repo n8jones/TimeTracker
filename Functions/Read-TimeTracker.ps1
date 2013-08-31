@@ -1,3 +1,7 @@
+<#
+.SYNOPSIS
+	Reads the TimeTracker entries from the specified file.
+#>
 function Read-TimeTracker{
 	Param(
 		[string]$FilePath = $(Get-TimeTrackerFile)

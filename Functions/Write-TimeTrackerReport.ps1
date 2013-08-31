@@ -1,3 +1,11 @@
+<#
+.SYNOPSIS
+	Writes the TimeTracker report to the screen.
+.DESCRIPTION
+	Writes a summary of the TimeTracker entries between the specified MinTime and MaxTime.
+.LINK
+	https://github.com/n8jones/TimeTracker
+#>
 function Write-TimeTrackerReport{
 	[CmdletBinding()]
 	Param(
@@ -72,6 +80,8 @@ function Write-TimeTrackerReport{
 	foreach($time in ($npTimes.GetEnumerator() | Sort-Object Value -Descending)){
 		Write-Host "`t" ($time.Name.PadRight(50)) " " (Format-TimeTrackerTimeSpan($time.Value));
 	}
-	Write-Host "Average Time In: " (Format-TimeTrackerTimeSpan([TimeSpan]::FromTicks($timeInTicks / $timeInCount)));
+	if($timeInCount -gt 0){
+		Write-Host "Average Time In: " (Format-TimeTrackerTimeSpan([TimeSpan]::FromTicks($timeInTicks / $timeInCount)));
+	}
 	Write-Host "Time since last entry: " (Format-TimeTrackerTimeSpan((Get-Date) - $entries[-1].Timestamp));
 }
